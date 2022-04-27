@@ -1,0 +1,44 @@
+1. 
+
+Customer name
+//input[@name='name]
+Gender
+//input[@value='m']
+//input[@value=’f’]
+DOB
+//input[@id='dob']
+Address
+//textarea[@name='addr']
+City
+//input[@name='city']
+State
+//input[@name=’state’]
+PIN
+//input[@name=’pinno’]
+Mobile
+//input[@name=’telephoneno’]
+Email
+//input[@name=’emailid’]
+Password
+//input[@name=’password’]
+Submit btn
+//input[@name='sub']
+Cancel btn
+//input[@name=’res’]
+
+
+2.
+
+Email
+//input[@id='_com_liferay_login_web_portlet_LoginPortlet_login']
+Password
+//input[@id='_com_liferay_login_web_portlet_LoginPortlet_password']
+Checkbox
+//input[@id='_com_liferay_login_web_portlet_LoginPortlet_rememberMe']
+SignIn btn
+//button[@id='_com_liferay_login_web_portlet_LoginPortlet_ysmd']
+Error Msg
+//div[contains(text(),'This field is required.')]
+
+3.	
+//li[normalize-space()='demo3-dup?']
