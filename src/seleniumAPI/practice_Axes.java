@@ -22,10 +22,12 @@ public class practice_Axes {
 						
 				//Putting implicit wait
 				driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-				
+				driver.findElement(By.xpath("//button[@id='onesignal-slidedown-cancel-button']")).click();
+				driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+
 				//select item
-				driver.findElement(By.xpath("//p[contains(text(),\"Peppa Pig: Going Swimming\")]//ancestor::div[3]")).click();	
-	
+				driver.findElement(By.xpath("//p[contains(text(),'Peppa Pig: Going Swimming')]//ancestor::div[3]")).click();
+				
 				Assert.assertTrue(driver.findElement(By.xpath("//h1[contains(text(),\"Peppa Pig: Going Swimming\")]")).isDisplayed());
 				driver.manage().timeouts().implicitlyWait(30000, TimeUnit.SECONDS);
 
