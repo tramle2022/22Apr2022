@@ -9,7 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class mecoXHANDLE_TBTA {
 	public static void main(String[] args) {
@@ -74,7 +76,7 @@ public class mecoXHANDLE_TBTA {
 		driver.findElement(By.xpath("//input[@id='billing_email']")).sendKeys(email);
 		driver.findElement(By.xpath("//textarea[@id='order_comments']")).sendKeys(color);
 
-		// back to previous page
+		// back to previous page & input over allow quantity it
 		driver.navigate().back();
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
@@ -113,33 +115,47 @@ public class mecoXHANDLE_TBTA {
 		// update right value
 		
 		  driver.findElement(By.
-		  xpath("//input[@type='number' and @aria-labelledby='Colby Teak and Woven Desk quantity']")).clear(); driver.findElement(By.
-		  xpath("//input[@type='number' and @aria-labelledby='Colby Teak and Woven Desk quantity']")).sendKeys("3");
+		  xpath("//input[@type='number' and @aria-labelledby='Colby Teak and Woven Desk quantity']"
+		  )).clear(); driver.findElement(By.
+		  xpath("//input[@type='number' and @aria-labelledby='Colby Teak and Woven Desk quantity']"
+		  )).sendKeys("3");
 		  driver.findElement(By.xpath("//button[@name='update_cart']")).click();
-		  driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+		  driver.manage().timeouts().implicitlyWait(6000, TimeUnit.MILLISECONDS);
+		  
+	//	  new WebDriverWait(getWebDriver(), 10).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(normalize-space(),'Proceed to checkout')]"))).click();
+	/*
+	 * WebDriverWait wait = new WebDriverWait(driver, 10);
+	 * wait.until(ExpectedConditions.elementToBeClickable(By.
+	 * xpath("//a[contains(normalize-space(),'Proceed to checkout')]"))).click();
+	 */
+		  
+		  WebDriverWait wait = new WebDriverWait(driver, 10);
+		  WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(normalize-space(),'Proceed to checkout')]"))); 
+		  ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
+
+		  // checkout again 
+		 // driver.findElement(By. xpath("//a[contains(normalize-space(),'Proceed to checkout')]")).click();
+		  driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		  
+		  // clear old value billing
+		  driver.findElement(By.xpath("//input[@id='billing_first_name']")).clear();
+		  driver.findElement(By.xpath("//input[@id='billing_last_name']")).clear();
+		  driver.findElement(By.xpath("//input[@id='billing_company']")).clear();
+		  driver.findElement(By.xpath("//*[@id='select2-billing_country-container']")).
+		  clear();
+		  driver.findElement(By.xpath("//input[@id='billing_address_1']")).clear();
+		  driver.findElement(By.xpath("//input[@id='billing_city']")).clear();
+		  driver.findElement(By.xpath("//*[@id='select2-billing_state-container']")).
+		  clear();
+		  driver.findElement(By.xpath("//select[@id='billing_state']")).clear();
+		  driver.findElement(By.xpath("//input[@id='billing_postcode']")).clear();
+		  driver.findElement(By.xpath("//input[@id='billing_phone']")).clear();
+		  driver.findElement(By.xpath("//input[@id='billing_email']")).clear();
+		  driver.findElement(By.xpath("//textarea[@id='order_comments']")).clear();
+		  driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		  
+		  driver.quit(); driver.close();
 		 
-
-		// checkout again
-		driver.findElement(By.xpath("//a[contains(normalize-space(),'Proceed to checkout')]")).click();
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-
-		// clear old value billing
-		driver.findElement(By.xpath("//input[@id='billing_first_name']")).clear();
-		driver.findElement(By.xpath("//input[@id='billing_last_name']")).clear();
-		driver.findElement(By.xpath("//input[@id='billing_company']")).clear();
-		driver.findElement(By.xpath("//*[@id='select2-billing_country-container']")).clear();
-		driver.findElement(By.xpath("//input[@id='billing_address_1']")).clear();
-		driver.findElement(By.xpath("//input[@id='billing_city']")).clear();
-		driver.findElement(By.xpath("//*[@id='select2-billing_state-container']")).clear();
-		driver.findElement(By.xpath("//select[@id='billing_state']")).clear();
-		driver.findElement(By.xpath("//input[@id='billing_postcode']")).clear();
-		driver.findElement(By.xpath("//input[@id='billing_phone']")).clear();
-		driver.findElement(By.xpath("//input[@id='billing_email']")).clear();
-		driver.findElement(By.xpath("//textarea[@id='order_comments']")).clear();
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-
-		driver.quit();
-		driver.close();
 
 	}
 }
