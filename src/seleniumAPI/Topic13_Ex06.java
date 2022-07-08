@@ -24,11 +24,10 @@ public class Topic13_Ex06 {
 		driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
 		Actions action = new Actions(driver);
 		action.moveToElement(dd1).click().build().perform();
-	//	action.dragAndDropBy(dd1, 0, 1000).build().perform();
 		System.out.println(dd1.getText());
 		
-	//	Thread.sleep(300);
-	//	driver.close();driver.quit();
+		Thread.sleep(300);
+		driver.close();driver.quit();
 		
 	}
 }
